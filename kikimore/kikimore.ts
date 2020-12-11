@@ -39,9 +39,7 @@ export class Kikimore {
 
     // Database
     this.databaseName = options.databaseName;
-    this.databaseUrl = options.databaseName
-      ? options.databaseName
-      : 'localhost';
+    this.databaseUrl = options.databaseUrl ? options.databaseUrl : 'localhost';
     this.mongoose = mongoose;
 
     // API

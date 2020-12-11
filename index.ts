@@ -1,7 +1,5 @@
 import Kikimore from './kikimore/kikimore';
 
-console.log(process.env.mongoUrl);
-
 const kikimore = new Kikimore({
   databaseName: 'kikimore',
   databaseUrl: process.env.mongoUrl,
