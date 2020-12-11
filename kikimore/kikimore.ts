@@ -103,7 +103,8 @@ export class Kikimore {
       useUnifiedTopology: true,
       useFindAndModify: false,
     };
-    await this.mongoose.connect(uri, options).catch(() => {
+    await this.mongoose.connect(uri, options).catch((err) => {
+      console.log(err);
       console.error(
         '1001: MongoDB unavailable, please first install MongoDB before proceeding',
       );
