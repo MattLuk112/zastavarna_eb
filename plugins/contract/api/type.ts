@@ -10,6 +10,7 @@ export const typeDef = `
         totalPrice: Int
         client: Client
         rate: Rate
+        createdAt: String
     }
 
     input CreateContractInput {

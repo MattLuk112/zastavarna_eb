@@ -50,6 +50,12 @@ export const resolver = {
     client: async (contract) => {
       return (await contract.populate('client').execPopulate()).client;
     },
+    createdAt: async (contract) => {
+      const day = `0${contract.createdAt.getDate()}`.slice(-2);
+      const month = `0${contract.createdAt.getMonth() + 1}`.slice(-2);
+      const year = contract.createdAt.getFullYear();
+      return `${year}-${month}-${day}`;
+    },
     rate: async (contract) => {
       return (await contract.populate('rate').execPopulate()).rate;
     },

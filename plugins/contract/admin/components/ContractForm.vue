@@ -314,7 +314,12 @@ export default {
     const calculatedInterest = computed(() => {
       let result = '';
       if (calculatedRate.value) {
-        const d = new Date().getTime();
+        let d;
+        if (id) {
+          d = new Date(localContract.createdAt).getTime();
+        } else {
+          d = new Date().getTime();
+        }
         const payDate = new Date(localContract.payDate).getTime();
         const differenceInTime = payDate - d;
         const differenceInDays = Math.ceil(
