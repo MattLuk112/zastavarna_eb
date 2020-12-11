@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-3xl mx-auto lg:ml-0 lg:mr-auto">
-    <div class="relative px-6 py-6 border-b xl:mx-0 xl:px-12" v-if="isNew">
+    <div class="relative py-6 mx-6 border-b xl:mx-12" v-if="isNew">
       <input
         type="text"
         class="block w-full px-1 py-2 placeholder-gray-600 bg-gray-200 border rounded focus:outline-none focus:bg-white focus:text-black"
@@ -9,7 +9,7 @@
         v-model="searchClient"
       />
       <div
-        class="absolute left-0 right-0 mx-6 bg-white border border-t-0 rounded shadow-md"
+        class="absolute left-0 right-0 bg-white border border-t-0 rounded shadow-md"
         v-if="searchClient.length"
       >
         <div
