@@ -25,7 +25,7 @@
         </p>
       </div>
       <div class="w-full pt-4 lg:pt-0 lg:w-1/2 lg:text-right">
-        <h3 class="font-semibold truncate">{{ contract.itemPrice }} Kč</h3>
+        <h3 class="font-semibold truncate">{{ contract.totalPrice }} Kč</h3>
         <p class="mt-0 text-gray-600 truncate">
           {{ formatDate(contract.payDate) }}
         </p>
