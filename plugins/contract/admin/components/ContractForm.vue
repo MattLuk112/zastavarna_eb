@@ -251,7 +251,7 @@ export default {
     async function save() {
       let mutation;
       if (id) {
-        mutation = `
+        /* mutation = `
           updateContract(contract: {
             _id: "${id}",
             firstName: "${localContract.firstName}",
@@ -261,9 +261,10 @@ export default {
           }) {
           firstName,
           }
-        `;
+        `; */
       } else {
         await contractStore.createContract(localContract);
+        router.push({ name: 'Contracts' });
       }
     }
 
