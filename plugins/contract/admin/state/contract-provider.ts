@@ -12,7 +12,7 @@ async function getContracts() {
       data: { contracts },
       errors,
     } = await doQuery(
-      `contracts{_id, client{ _id, firstName, lastName, street, city, idCard, birthNumber, nationality, sex }, itemName, itemPrice, loanAmount, payDate, totalInterest, dayInterest, totalPrice }`,
+      `contracts{_id, client{ _id, firstName, lastName, street, city, idCard, birthNumber, nationality, sex }, itemName, itemPrice, loanAmount, payDate, totalInterest, dayInterest, totalPrice, createdAt }`,
     );
     state.loaded = true;
     state.contracts.push(...contracts);
@@ -28,7 +28,7 @@ async function getContract(id) {
       data: { contract },
       errors,
     } = await doQuery(
-      `contract(_id: "${id}"){_id, client{ _id, firstName, lastName, street, city, idCard, birthNumber, nationality, sex }, itemName, itemPrice, loanAmount, payDate, totalInterest, dayInterest, totalPrice }`,
+      `contract(_id: "${id}"){_id, client{ _id, firstName, lastName, street, city, idCard, birthNumber, nationality, sex }, itemName, itemPrice, loanAmount, payDate, totalInterest, dayInterest, totalPrice, createdAt }`,
     );
     state.contracts.push(contract);
     preparedContract = contract;
@@ -40,7 +40,7 @@ async function getContract(id) {
         data: { contract },
         errors,
       } = await doQuery(
-        `contract(_id: "${id}"){_id, client{ _id, firstName, lastName, street, city, idCard, birthNumber, nationality, sex }, itemName, itemPrice, loanAmount, payDate, totalInterest, dayInterest, totalPrice }`,
+        `contract(_id: "${id}"){_id, client{ _id, firstName, lastName, street, city, idCard, birthNumber, nationality, sex }, itemName, itemPrice, loanAmount, payDate, totalInterest, dayInterest, totalPrice, createdAt }`,
       );
       state.contracts.push(contract);
       preparedContract = contract;
