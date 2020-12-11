@@ -18,7 +18,7 @@
     <template v-slot:main>
       <Suspense>
         <template #default>
-          <rate-form ref="rateForm"></rate-form>
+          <rate-form ref="formRate"></rate-form>
         </template>
         <template #fallback></template>
       </Suspense>
@@ -43,7 +43,7 @@ export default {
     RateForm,
   },
   setup() {
-    const rateForm = ref(null);
+    const formRate = ref(null);
     const route = useRoute();
     const id = route.params.id;
     let isNew = true;
@@ -54,18 +54,18 @@ export default {
     }
 
     function save() {
-      rateForm.value.save();
+      formRate.value.save();
     }
 
     function deleteRate() {
-      rateForm.value.deleteRate();
+      formRate.value.deleteRate();
     }
 
     return {
       isNew,
       pageTitle,
       save,
-      rateForm,
+      formRate,
       deleteRate,
     };
   },
