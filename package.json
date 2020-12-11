@@ -28,5 +28,8 @@
     "vite": "^1.0.0-rc.9",
     "vue": "^3.0.2",
     "vue-router": "^4.0.0-rc.5"
+  },
+  "dependencies": {
+    "moment": "^2.29.1"
   }
 }

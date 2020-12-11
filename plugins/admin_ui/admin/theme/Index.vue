@@ -31,35 +31,14 @@
               class="px-6 pt-6 overflow-y-auto text-base lg:text-sm lg:py-12 lg:pl-6 lg:pr-8 lg:h-(screen-16)"
             >
               <!-- Chart -->
-              <div class="flex">
-                <div class="w-1/2">
-                  <h4 class="font-semibold">Stav</h4>
-                </div>
-                <div class="w-1/2 text-right">
-                  <span class="font-semibold"> 27 600 Kč </span>
-                </div>
-              </div>
-
-              <div class="flex items-end pt-2 space-x-1">
-                <div class="w-2 h-4 bg-gray-500"></div>
-                <div class="w-2 h-6 bg-gray-500"></div>
-                <div class="w-2 h-2 bg-gray-500"></div>
-                <div class="w-2 h-8 bg-gray-500"></div>
-                <div class="w-2 h-2 bg-gray-500"></div>
-                <div class="w-2 h-10 bg-gray-500"></div>
-                <div class="w-2 h-8 bg-gray-500"></div>
-                <div class="w-2 h-2 bg-gray-500"></div>
-                <div class="w-2 h-6 bg-gray-500"></div>
-                <div class="w-2 h-5 bg-gray-500"></div>
-                <div class="w-2 h-8 bg-gray-500"></div>
-                <div class="w-2 h-8 bg-gray-500"></div>
-                <div class="w-2 h-2 bg-gray-500"></div>
-                <div class="w-2 h-1 bg-gray-500"></div>
-                <div class="w-2 h-3 bg-gray-500"></div>
-                <div class="w-2 h-5 bg-gray-500"></div>
-                <div class="w-2 h-6 bg-gray-500"></div>
-                <div class="w-2 h-10 bg-gray-500"></div>
-              </div>
+              <Suspense>
+                <template #default>
+                  <contract-mini-chart></contract-mini-chart>
+                </template>
+                <template #fallback>
+                  Tady se nahrává graf
+                </template>
+              </Suspense>
             </div>
           </div>
         </div>
@@ -70,11 +49,13 @@
 <script>
 import HeaderComponent from './components/Header.vue';
 import SidebarComponent from './components/Sidebar.vue';
+import ContractMiniChart from '/~plugins/contract/admin/components/ContractMiniChart.vue';
 
 export default {
   components: {
     HeaderComponent,
     SidebarComponent,
-  },
+    ContractMiniChart
+  }
 };
 </script>

@@ -21,3 +21,11 @@ brew install mongodb-community@4.4
 ```
 brew services start mongodb/brew/mongodb-community
 ```
+
+#### Connect to specific db
+
+Run before start
+
+```
+export mongoUrl=XX.XXX.XXX.XXX 
+```
