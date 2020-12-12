@@ -12,6 +12,8 @@
           </div>
         </div>
 
+        TEST
+
         <div class="flex items-end pt-2 space-x-1">
           <div v-for="period in stats.lastPeriod"
             :key="period.label"
