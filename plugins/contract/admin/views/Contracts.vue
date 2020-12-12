@@ -15,7 +15,9 @@
         <template #default>
           <contract-list></contract-list>
         </template>
-        <template #fallback> </template>
+        <template #fallback>
+          Fallback
+        </template>
       </Suspense>
     </template>
   </page-layout>

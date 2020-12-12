@@ -12,29 +12,12 @@
           </div>
         </div>
 
-        {{ stats.highest }} Kč
-
-        {{ stats.lastPeriod }}
-
         <div class="flex items-end pt-2 space-x-1">
-          <div class="w-2 h-4 bg-gray-500"></div>
-          <div class="w-2 h-6 bg-gray-500"></div>
-          <div class="w-2 h-2 bg-gray-500"></div>
-          <div class="w-2 h-8 bg-gray-500"></div>
-          <div class="w-2 h-2 bg-gray-500"></div>
-          <div class="w-2 h-10 bg-gray-500"></div>
-          <div class="w-2 h-8 bg-gray-500"></div>
-          <div class="w-2 h-2 bg-gray-500"></div>
-          <div class="w-2 h-6 bg-gray-500"></div>
-          <div class="w-2 h-5 bg-gray-500"></div>
-          <div class="w-2 h-8 bg-gray-500"></div>
-          <div class="w-2 h-8 bg-gray-500"></div>
-          <div class="w-2 h-2 bg-gray-500"></div>
-          <div class="w-2 h-1 bg-gray-500"></div>
-          <div class="w-2 h-3 bg-gray-500"></div>
-          <div class="w-2 h-5 bg-gray-500"></div>
-          <div class="w-2 h-6 bg-gray-500"></div>
-          <div class="w-2 h-10 bg-gray-500"></div>
+          <div v-for="period in stats.lastPeriod"
+            :key="period.label"
+            class="w-2 bg-gray-500"
+            :class="[`h-${period.height}`]">
+          </div>
         </div>
     </div>
 </template>
@@ -51,11 +34,25 @@ export default {
     const stats = reactive({
       lastPeriod: computed(() => {
         const now = moment().utc();
-        const start = now.clone().subtract(30, 'days');
+        const start = now.clone().subtract(14, 'days');
         const period = [];
 
-        for (let m = start; m.isBefore(now); m.add(1, 'days')) {
-          period.push(m.format('YYYY-MM-DD'));
+        for (let m = start; m.isBefore(now); m.add(14, 'days')) {
+          const value = contracts.filter(contract => {
+            return moment(contract.createdAt).isSame(m, 'day');
+          }).reduce((accumulator, item) => {
+            return accumulator + item.totalPrice;
+          }, 0);
+
+          const share = (value/stats.highest);
+
+          period.push({
+            label: m.format('l'),
+            value,
+            share,
+            percent: 100*share,
+            height: Math.ceil(10*share) + 1
+          });
         }
 
         return period;
@@ -64,9 +61,7 @@ export default {
         if (contracts.length === 0) {
           return 0;
         }
-        return contracts.sort((a, b) => {
-          return a.totalPrice < b.totalPrice; 
-        }).find(() => true).totalPrice;
+        return Math.max.apply(Math, contracts.map(function(o) { return o.totalPrice; }));
       }),
       total: computed(() => {
         return contracts.reduce((accumulator, item) => {
