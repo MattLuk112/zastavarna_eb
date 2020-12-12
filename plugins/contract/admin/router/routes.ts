@@ -14,4 +14,14 @@ export const routes = [
     name: 'ContractDetail',
     component: './views/Detail.vue',
   },
+  {
+    path: 'contracts/print/:id?',
+    name: 'ContractPrint',
+    component: './views/Print.vue',
+  },
+  {
+    path: 'contracts/summary',
+    name: 'Summary',
+    component: './views/Summary.vue',
+  },
 ];

@@ -3,7 +3,7 @@
     <div class="relative py-6 mx-6 border-b xl:mx-12" v-if="isNew">
       <input
         type="text"
-        class="block w-full px-1 py-2 placeholder-gray-600 bg-gray-200 border rounded focus:outline-none focus:bg-white focus:text-black"
+        class="block w-full px-2 py-2 placeholder-gray-400 bg-gray-100 border rounded focus:outline-none focus:bg-white focus:text-black"
         placeholder="Hledat podle Jména/RČ/Čísla OP"
         @blur="hideSearch"
         v-model="searchClient"

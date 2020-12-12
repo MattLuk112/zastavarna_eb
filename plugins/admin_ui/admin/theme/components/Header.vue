@@ -1,11 +1,14 @@
 <template>
   <div
-    class="fixed inset-x-0 top-0 flex items-center h-16 bg-white border-b border-gray-200 z-100"
+    class="fixed inset-x-0 top-0 flex items-center h-16 bg-white border-b border-gray-200 z-100 print:hidden"
   >
     <div class="relative w-full max-w-screen-xl px-6 mx-auto">
       <div class="flex items-center -mx-6">
         <div class="pl-6 pr-6 lg:w-1/4 xl:w-1/5 lg:pr-8">
           <div class="flex items-center">
+            <div class="flex-grow-0">
+              <div class="mr-3 rounded-md bg-gradient-to-br from-pink-500 to-red-500"><svg class="h-6 w-6" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M9 6C10.0929 6 11.1175 6.29218 12 6.80269V16.8027C11.1175 16.2922 10.0929 16 9 16C7.90714 16 6.88252 16.2922 6 16.8027V6.80269C6.88252 6.29218 7.90714 6 9 6Z" fill="#FFF1F2"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M15 6C16.0929 6 17.1175 6.29218 18 6.80269V16.8027C17.1175 16.2922 16.0929 16 15 16C13.9071 16 12.8825 16.2922 12 16.8027V6.80269C12.8825 6.29218 13.9071 6 15 6Z" fill="#FECDD3"></path></svg></div>
+            </div>
             <h1 class="font-semibold">
               <router-link :to="{ name: 'AdminIndex' }" class="block lg:mr-4">
                 Zastavárna
@@ -16,12 +19,11 @@
         <div class="flex flex-grow min-w-0 lg:w-3/4 xl:w-4/5">
           <div class="w-full min-w-0 lg:px-6 xl:w-3/4 xl:px-12">
             <div class="relative">
-              <button
-                class="block w-full py-2 pl-10 pr-4 leading-normal text-left text-gray-600 truncate transition-colors duration-100 ease-in-out bg-gray-200 border border-transparent rounded-lg appearance-none select-none focus:outline-none focus:bg-white focus:border-gray-300"
+              <input
+                class="block w-full py-2 pl-10 pr-4 leading-normal text-left text-gray-600 placeholder-gray-400 truncate transition-colors duration-100 ease-in-out bg-gray-100 border rounded appearance-none select-none focus:outline-none focus:bg-white focus:border-gray-300"
+                placeholder="Vyhledat (jméno, zástava nebo RČ)"
+                v-model="ui.search"
               >
-                Vyhledat
-                <span class="hidden sm:inline">(jméno, zástava nebo RČ)</span>
-              </button>
               <div
                 class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none"
               >
@@ -98,7 +100,7 @@
   </div>
 </template>
 <script>
-import { ref } from 'vue';
+import { ref, reactive, watch, inject } from 'vue';
 
 export default {
   setup() {
@@ -113,10 +115,21 @@ export default {
       location = '/login';
     }
 
+    const contractStore = inject('contractStore');
+
+    const ui = reactive({
+      search: ''
+    });
+
+    watch(() => ui.search, (value) => {
+      contractStore.setSearch(value);
+    })
+
     return {
       userDropdown,
       toggleDropdown,
       logout,
+      ui,
     };
   },
 };

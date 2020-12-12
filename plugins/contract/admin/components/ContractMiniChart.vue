@@ -1,24 +1,26 @@
 <template>
     <div>
         <!-- Chart -->
-        <div class="flex">
+        <div class="flex items-center">
           <div class="w-1/2">
-            <h4 class="font-semibold">Stav</h4>
+            <h4 class="font-bold text-xs whitespace-nowrap">Celková hodnota</h4>
           </div>
           <div class="w-1/2 text-right">
             <span class="font-semibold"> 
-              {{ stats.total }} Kč
+              {{ formatPrice(stats.total) }} Kč
             </span>
           </div>
         </div>
 
-        TEST NECO
-
-        <div class="flex items-end pt-2 space-x-1">
+        <div class="flex items-end py-4 space-x-1">
           <div v-for="period in stats.lastPeriod"
             :key="period.label"
-            class="w-2 bg-gray-500"
+            class="w-2 bg-gray-300 tooltip cursor-pointer hover:bg-gray-900"
             :class="[`h-${period.height}`]">
+              <span class="tooltip-text bg-black text-white p-3 -mt-1 lg:-mt-8 rounded text-sm whitespace-nowrap">
+                {{ period.label }} - 
+                {{ formatPrice(period.value) }} Kč
+              </span>
           </div>
         </div>
     </div>
@@ -36,10 +38,10 @@ export default {
     const stats = reactive({
       lastPeriod: computed(() => {
         const now = moment().utc();
-        const start = now.clone().subtract(14, 'days');
+        const start = now.clone().subtract(21, 'days');
         const period = [];
 
-        for (let m = start; m.isBefore(now); m.add(14, 'days')) {
+        for (let m = start; m.isBefore(now); m.add(1, 'days')) {
           const value = contracts.filter(contract => {
             return moment(contract.createdAt).isSame(m, 'day');
           }).reduce((accumulator, item) => {
@@ -72,9 +74,14 @@ export default {
       })
     });
 
+    const formatPrice = (input) => {
+      return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
     return {
       contracts,
-      stats
+      stats,
+      formatPrice
     };
   },
 };

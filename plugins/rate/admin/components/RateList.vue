@@ -2,6 +2,7 @@
   <div
     class="max-w-3xl px-6 py-6 mx-auto border-b lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12"
     v-for="rate in rates"
+    :key="rate.name"
   >
     <div class="justify-between lg:flex">
       <div>
@@ -32,7 +33,7 @@
         :to="{ name: 'RateDetail', params: { id: rate._id } }"
         class="relative inline-flex items-center justify-center px-3 py-2 text-base font-medium leading-6 text-gray-800 transition duration-150 ease-in-out bg-white border border-gray-200 rounded-md shadow cursor-pointer hover:text-gray-600 focus:outline-none focus:shadow-outline z-2"
       >
-        Edit
+        Upravit
       </router-link>
     </div>
   </div>

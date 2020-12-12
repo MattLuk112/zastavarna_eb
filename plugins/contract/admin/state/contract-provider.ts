@@ -4,6 +4,7 @@ import { reactive, computed, readonly } from 'vue';
 const state = reactive({
   contracts: [],
   loaded: false,
+  search: '',
 });
 
 async function getContracts() {
@@ -119,10 +120,15 @@ async function deleteContract(_id) {
   state.contracts.splice(index, 1);
 }
 
+function setSearch(query) {
+  state.search = query;
+}
+
 export const contractStore = readonly({
   state,
   getContracts,
   getContract,
   createContract,
   deleteContract,
+  setSearch,
 });

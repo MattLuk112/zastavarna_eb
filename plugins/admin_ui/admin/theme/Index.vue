@@ -25,7 +25,7 @@
           class="fixed inset-0 hidden w-full h-full pt-16 -mb-16 border-b z-90 lg:-mb-0 lg:static lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 lg:border-l xl:w-1/5"
         >
           <div
-            class="h-full overflow-hidden overflow-y-auto scrolling-touch bg-white lg:h-auto lg:block lg:sticky lg:bg-transparent top-4 lg:top-16"
+            class="h-full scrolling-touch bg-white lg:h-auto lg:block lg:sticky lg:bg-transparent top-4 lg:top-16"
           >
             <div
               class="px-6 pt-6 overflow-y-auto text-base lg:text-sm lg:py-12 lg:pl-6 lg:pr-8 lg:h-(screen-16)"
@@ -39,6 +39,25 @@
                   Tady se nahrává graf
                 </template>
               </Suspense>
+
+
+              <!-- Footer -->
+              <div class="py-2 pt-20 text-xs">
+                <a 
+                  href="https://github.com/mattluk112"
+                  class="text-gray-400 underline mr-2"
+                  target="_blank"
+                >
+                  Dokumentace
+                </a>
+                <a 
+                  href="mailto:info@bitterend.io"
+                  class="text-gray-400 underline"
+                  target="_blank"
+                >
+                  Bug report
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -56,6 +75,7 @@ export default {
     HeaderComponent,
     SidebarComponent,
     ContractMiniChart
-  }
+  },
+  provide: ['ui-store']
 };
 </script>

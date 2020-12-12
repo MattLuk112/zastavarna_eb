@@ -1,5 +1,5 @@
 <template>
-  <!-- <button
+  <button
     type="button"
     class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-gray-700 bg-white border border-gray-400 rounded-md group hover:text-gray-900 focus:outline-none focus:text-gray-900 focus:border-gray-500 hover:border-gray-500"
   >
@@ -18,17 +18,17 @@
       />
     </svg>
     Řazení
-  </button> -->
+  </button>
   <button
     type="button"
-    class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-green-100 bg-green-600 border border-green-400 rounded-md shadow-xl group hover:text-white focus:outline-none focus:text-white focus:border-green-500 hover:border-green-500"
+    class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-green-100 bg-green-600 border border-green-400 rounded-md shadow group hover:text-white focus:outline-none focus:text-white focus:border-green-500 hover:border-green-500 hover:bg-green-500"
     @click="$router.push({ name: 'ContractDetail' })"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"
-      class="w-5 h-5 mr-3 -ml-1 text-green-400 group-focus:text-green-500"
+      class="w-5 h-5 mr-3 -ml-1"
     >
       <path
         fill-rule="evenodd"

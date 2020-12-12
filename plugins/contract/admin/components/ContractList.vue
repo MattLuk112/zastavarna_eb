@@ -37,7 +37,7 @@
       <!-- Contact: Actions -->
       <div class="flex pt-4">
         <div class="w-full space-x-1">
-          <a href="#" class="relative inline-block group">
+          <a href="#" class="relative inline-block group opacity-50">
             <span
               class="absolute top-0 left-0 right-0 hidden h-6 -mt-4 text-xs font-semibold text-center text-white bg-green-500 group-hover:block z-1 rounded-t-md"
             >
@@ -49,7 +49,7 @@
               Prodloužení
             </span>
           </a>
-          <a href="#" class="relative inline-block group">
+          <a href="#" class="relative inline-block group opacity-50">
             <span
               class="absolute top-0 left-0 right-0 hidden h-6 -mt-4 text-xs font-semibold text-center text-white bg-green-500 group-hover:block z-1 rounded-t-md"
             >
@@ -74,7 +74,7 @@
               Editace
             </router-link>
           </a>
-          <a href="#" class="relative inline-block group">
+          <a href="#" class="relative inline-block group opacity-50">
             <span
               class="absolute top-0 left-0 right-0 hidden h-6 -mt-4 text-xs font-semibold text-center text-white bg-green-500 group-hover:block z-1 rounded-t-md"
             >
@@ -86,6 +86,19 @@
               Propadnutí
             </span>
           </a>
+          <a href="#" class="relative inline-block group">
+            <span
+              class="absolute top-0 left-0 right-0 hidden h-6 -mt-4 text-xs font-semibold text-center text-white bg-green-500 group-hover:block z-1 rounded-t-md"
+            >
+              T
+            </span>
+            <router-link
+              :to="{ name: 'ContractPrint', params: { id: contract._id } }"
+              class="relative inline-flex items-center justify-center px-5 py-2 text-base font-medium leading-6 text-gray-800 transition duration-150 ease-in-out bg-white border border-gray-200 rounded-md shadow hover:text-gray-600 focus:outline-none focus:shadow-outline z-2"
+            >
+              Tisk
+            </router-link>
+          </a>
         </div>
       </div>
     </div>
@@ -93,16 +106,16 @@
 </template>
 <script>
 import { doQuery } from '/~composables/graphql';
-import { inject } from 'vue';
+import { inject, computed } from 'vue';
 
 export default {
   async setup() {
     const contractStore = inject('contractStore');
     const clientStore = inject('clientStore');
     await clientStore.getClients();
-    const contracts = await contractStore.getContracts();
+    const contractsOrig = await contractStore.getContracts();
 
-    contracts.sort((a, b) => {
+    contractsOrig.sort((a, b) => {
       return new Date(a.payDate) - new Date(b.payDate);
     });
 
@@ -128,6 +141,28 @@ export default {
         return 'fine';
       }
     }
+
+    function normalize(input) {
+      return input.toLowerCase();
+    }
+
+    const contracts = computed(() => {
+      return contractsOrig.filter(item => {
+        function matchesClientSearch(contract, search) {
+          return contract.client && (
+            normalize(contract.client.firstName).indexOf(search) !== -1
+            || normalize(contract.client.lastName).indexOf(search) !== -1
+            || normalize(`${contract.client.lastName} ${contract.client.firstName}`).indexOf(search) !== -1
+            || normalize(`${contract.client.firstName} ${contract.client.lastName}`).indexOf(search) !== -1
+            || normalize(contract.client.birthNumber).indexOf(search) !== -1
+          )
+        }
+        function matchesContractSearch(contract, search) {
+          return normalize(contract.itemName).indexOf(search) !== -1
+        }
+        return matchesClientSearch(item, normalize(contractStore.state.search)) || matchesContractSearch(item, normalize(contractStore.state.search));
+      });
+    });
 
     return {
       contracts,
