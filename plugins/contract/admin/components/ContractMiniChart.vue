@@ -12,6 +12,9 @@
           </div>
         </div>
 
+        <!-- fake purge prvek -->
+        <span class="h-1 h-2 h-3 h-4 h-5 h-6 h-7 h-8 h-9 h-10"></span>
+
         <div class="flex items-end py-4 space-x-1">
           <div v-for="period in stats.lastPeriod"
             :key="period.label"
