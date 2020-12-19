@@ -6,4 +6,8 @@ export const routes = [
       name: 'Contracts',
     },
   },
+  {
+    path: 'preview',
+    component: './theme/Preview.vue'
+  }
 ];

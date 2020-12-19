@@ -1,7 +1,5 @@
 <template>
-  <base-dropdown
-    placeholder="Řazení"
-  >
+  <base-dropdown>
     <div
       class="
         relative

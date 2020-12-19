@@ -5,6 +5,7 @@ import BaseSelect from '/~plugins/ui/components/BaseSelect.vue';
 import BaseDropdown from '/~plugins/ui/components/BaseDropdown.vue';
 
 // Icons
+import IconChevronDown from '/~plugins/ui/components/icons/ChevronDown.vue';
 import IconSortDescending from '/~plugins/ui/components/icons/SortDescending.vue';
 
 export const components = [
@@ -15,5 +16,6 @@ export const components = [
     BaseDropdown,
 
     // Icons
+    IconChevronDown,
     IconSortDescending
 ];
