@@ -395,7 +395,7 @@ export class Kikimore {
           '/~admin/': this.path.resolve(__dirname, 'admin/src'),
           '/~plugins/': this.path.resolve(__dirname, '../plugins'),
           '/~composables/': this.path.resolve(__dirname, 'composables'),
-        },
+        }
       });
     }
   }
@@ -459,6 +459,12 @@ export class Kikimore {
       });
       configureServer.push(watcher);
     }
+
+    // Global components
+    const components = ({ watcher }) => {
+      watcher.add(`${this.pluginsPath}/**/components/*.vue`);
+    } 
+    configureServer.push(components);
 
     return configureServer;
   }

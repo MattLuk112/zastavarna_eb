@@ -30,7 +30,8 @@ module.exports = {
       4: '1rem',
       8: '2rem',
       16: '4rem',
-    },
+      full: '100%'
+    }
   },
   variants: {
     display: ['responsive', 'group-hover'],

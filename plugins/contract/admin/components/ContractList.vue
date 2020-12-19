@@ -109,7 +109,18 @@ import { doQuery } from '/~composables/graphql';
 import { inject, computed } from 'vue';
 
 export default {
-  async setup() {
+  props: {
+    options: {
+      type: Object,
+      default() {
+        return {
+          orderBy: 'payDate',
+          orderWay: 'ASC'
+        };
+      }
+    }
+  },
+  async setup(props) {
     const contractStore = inject('contractStore');
     const clientStore = inject('clientStore');
     await clientStore.getClients();
@@ -161,13 +172,18 @@ export default {
           return normalize(contract.itemName).indexOf(search) !== -1
         }
         return matchesClientSearch(item, normalize(contractStore.state.search)) || matchesContractSearch(item, normalize(contractStore.state.search));
-      });
+      }).sort((a, b) => (a[props.options.orderBy] > b[props.options.orderBy] ? 
+        props.options.orderWay === 'ASC' ? 1 : -1 
+        : 
+        props.options.orderWay === 'DESC' ? -1 : 1 
+      ));
     });
 
     return {
       contracts,
       formatDate,
       contractState,
+      options: props.options
     };
   },
 };

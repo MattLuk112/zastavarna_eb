@@ -39,30 +39,29 @@
               </div>
             </div>
           </div>
-          <div class="relative w-full min-w-0 text-right xl:w-1/4">
-            <button
-              class="inline-block transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-white"
-              aria-label="User menu"
-              aria-haspopup="true"
-              @click="toggleDropdown"
+          <div class="relative w-full min-w-0 text-right xl:w-1/4 flex items-center justify-end">
+
+            <base-dropdown
+              align="right"
             >
               <img
                 class="w-8 h-8 rounded-full"
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                 alt="Jmeno Uzivatele"
               />
-            </button>
-            <div
-              class="absolute right-0 transform bg-white border rounded shadow-lg translate-x-1/4"
-              :class="!userDropdown ? 'hidden' : ''"
-            >
-              <div
-                class="px-10 py-2 text-gray-700 cursor-pointer hover:bg-gray-100"
-                @click="logout"
-              >
-                Logout
-              </div>
-            </div>
+
+              <template v-slot:content>
+                <div class="py-1 px-4">
+                  <div
+                    class="bg-white hover:bg-gray-100 text-gray-700 hover:text-gray-900 cursor-pointer -mx-4 px-3 py-1 text-sm"
+                    @click="logout"
+                  >
+                    Log out
+                  </div>
+                </div>
+              </template>
+            </base-dropdown>
+
           </div>
           <button
             type="button"
@@ -100,16 +99,10 @@
   </div>
 </template>
 <script>
-import { ref, reactive, watch, inject } from 'vue';
+import { reactive, watch, inject } from 'vue';
 
 export default {
   setup() {
-    let userDropdown = ref(false);
-
-    function toggleDropdown() {
-      userDropdown.value = !userDropdown.value;
-    }
-
     function logout() {
       localStorage.removeItem('jwt');
       location = '/login';
@@ -126,8 +119,6 @@ export default {
     })
 
     return {
-      userDropdown,
-      toggleDropdown,
       logout,
       ui,
     };

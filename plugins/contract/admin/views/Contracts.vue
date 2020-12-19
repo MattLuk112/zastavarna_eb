@@ -6,14 +6,19 @@
           <h2 class="font-semibold">Smlouvy</h2>
         </template>
         <template v-slot:actions>
-          <contract-list-actions></contract-list-actions>
+          <contract-list-actions 
+            :options="options"
+            @order="order"
+          ></contract-list-actions>
         </template>
       </page-header>
     </template>
     <template v-slot:main>
       <Suspense>
         <template #default>
-          <contract-list></contract-list>
+          <contract-list
+            :options="options"
+          ></contract-list>
         </template>
         <template #fallback>
           Fallback
@@ -23,6 +28,7 @@
   </page-layout>
 </template>
 <script>
+import { reactive } from 'vue';
 import PageLayout from '/~plugins/admin_ui/admin/theme/layouts/PageLayout.vue';
 import PageHeader from '/~plugins/admin_ui/admin/theme/components/PageHeader.vue';
 import ContractListActions from '../components/ContractListActions.vue';
@@ -35,5 +41,21 @@ export default {
     ContractListActions,
     ContractList,
   },
+  setup() {
+    const options = reactive({
+      orderBy: 'payDate',
+      orderWay: 'ASC'
+    })
+
+    const order = (orderBy, orderWay) => {
+      options.orderBy = orderBy;
+      options.orderWay = orderWay;
+    }
+
+    return {
+      options,
+      order
+    }
+  }
 };
 </script>

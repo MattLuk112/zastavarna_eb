@@ -51,8 +51,8 @@ export default async (appName, plugins, environment, pluginsPath) => {
         // Import plugin file in development to watch for changes
         if (environment == 'development') {
           importPlugins += `
-          import ${plugin}${appName} from '/~plugins/${plugin}/${appName}'; \n
-        `;
+            import ${plugin}${appName} from '/~plugins/${plugin}/${appName}'; \n
+          `;
         }
       }
     }
