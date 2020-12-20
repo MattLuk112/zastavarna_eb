@@ -8,6 +8,7 @@ import BaseNumber from '/~plugins/ui/components/BaseNumber.vue';
 import BaseOnOff from '/~plugins/ui/components/BaseOnOff.vue';
 import BasePassword from '/~plugins/ui/components/BasePassword.vue';
 import BaseSelect from '/~plugins/ui/components/BaseSelect.vue';
+import BaseSlider from '/~plugins/ui/components/BaseSlider.vue';
 import BaseText from '/~plugins/ui/components/BaseText.vue';
 import BaseTextarea from '/~plugins/ui/components/BaseTextarea.vue';
 import BaseTime from '/~plugins/ui/components/BaseTime.vue';
@@ -32,6 +33,7 @@ export const components = [
     BaseOnOff,
     BasePassword,
     BaseSelect,
+    BaseSlider,
     BaseText,
     BaseTextarea,
     BaseTime,

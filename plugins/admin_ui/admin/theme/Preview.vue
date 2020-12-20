@@ -1,5 +1,15 @@
 <template>
     <div>
+        <!-- Slider -->
+        <div class="border-b border-gray-200 pt-2 px-4">
+            <h2 class="text-2xl font-bold py-2">Slider</h2>
+            <div class="pb-4">
+                <base-slider
+                    v-model="preview.baseSliderModel"
+                ></base-slider>
+            </div>
+        </div>
+
         <!-- Time -->
         <div class="border-b border-gray-200 pt-2 px-4">
             <h2 class="text-2xl font-bold py-2">Time</h2>
@@ -238,6 +248,7 @@ export default {
             basePasswordModel: null,
             baseSearchModel: null,
             baseSelectModel: null,
+            baseSliderModel: null,
             baseTextModel: null,
             baseTextareaModel: null,
             baseTimeModel: null
