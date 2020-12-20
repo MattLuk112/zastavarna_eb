@@ -1,5 +1,15 @@
 <template>
     <div>
+        <!-- On/Off -->
+        <div class="border-b border-gray-200 pt-2 px-4">
+            <h2 class="text-2xl font-bold py-2">On/Off</h2>
+            <div class="pb-4">
+                <base-on-off
+                    v-model="preview.baseOnOff"
+                ></base-on-off>
+            </div>
+        </div>
+
         <!-- Password -->
         <div class="border-b border-gray-200 pt-2 px-4">
             <h2 class="text-2xl font-bold py-2">Password</h2>
@@ -114,6 +124,7 @@ import { reactive } from 'vue'
 export default {
     setup() {
         const preview = reactive({
+            baseOnOff: false,
             basePasswordModel: null,
             baseSelectModel: null
         })
