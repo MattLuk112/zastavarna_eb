@@ -3,6 +3,7 @@ import BaseCheckbox from '/~plugins/ui/components/BaseCheckbox.vue';
 import BaseOnOff from '/~plugins/ui/components/BaseOnOff.vue';
 import BasePassword from '/~plugins/ui/components/BasePassword.vue';
 import BaseSelect from '/~plugins/ui/components/BaseSelect.vue';
+import BaseText from '/~plugins/ui/components/BaseText.vue';
 
 // UI
 import BaseDropdown from '/~plugins/ui/components/BaseDropdown.vue';
@@ -19,6 +20,7 @@ export const components = [
     BaseOnOff,
     BasePassword,
     BaseSelect,
+    BaseText,
     
     // UI
     BaseDropdown,

@@ -1,11 +1,33 @@
 <template>
     <div>
+        <!-- Search -->
+        <div class="border-b border-gray-200 pt-2 px-4">
+            <h2 class="text-2xl font-bold py-2">Search</h2>
+            <div class="pb-4">
+                <base-text
+                    v-model="preview.baseSearchModel"
+                    placeholder="Search..."
+                ></base-text>
+            </div>
+        </div>
+
+        <!-- Text -->
+        <div class="border-b border-gray-200 pt-2 px-4">
+            <h2 class="text-2xl font-bold py-2">Text</h2>
+            <div class="pb-4">
+                <base-text
+                    v-model="preview.baseTextModel"
+                    placeholder="Test here"
+                ></base-text>
+            </div>
+        </div>
+
         <!-- Checkbox -->
         <div class="border-b border-gray-200 pt-2 px-4">
             <h2 class="text-2xl font-bold py-2">Checkbox</h2>
             <div class="pb-4">
                 <base-checkbox
-                    v-model="preview.baseCheckbox"
+                    v-model="preview.baseCheckboxModel"
                 ></base-checkbox>
             </div>
         </div>
@@ -15,7 +37,7 @@
             <h2 class="text-2xl font-bold py-2">On/Off</h2>
             <div class="pb-4">
                 <base-on-off
-                    v-model="preview.baseOnOff"
+                    v-model="preview.baseOnOffModel"
                 ></base-on-off>
             </div>
         </div>
@@ -134,10 +156,12 @@ import { reactive } from 'vue'
 export default {
     setup() {
         const preview = reactive({
-            baseCheckbox: false,
-            baseOnOff: false,
+            baseCheckboxModel: false,
+            baseOnOffModel: false,
             basePasswordModel: null,
-            baseSelectModel: null
+            baseSearchModel: null,
+            baseSelectModel: null,
+            baseTextModel: null,
         })
 
         const sampleLabelFunction = function() {
