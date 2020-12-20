@@ -27,6 +27,8 @@ module.exports = {
     inset: {
       0: 0,
       auto: 'auto',
+      '0.5': '0.125rem',
+      1: '0.25rem',
       4: '1rem',
       8: '2rem',
       16: '4rem',

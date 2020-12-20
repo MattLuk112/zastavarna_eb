@@ -1,5 +1,15 @@
 <template>
     <div>
+        <!-- Color picker -->
+        <div class="border-b border-gray-200 pt-2 px-4">
+            <h2 class="text-2xl font-bold py-2">Color picker</h2>
+            <div class="pb-4">
+                <base-color-picker
+                    v-model="preview.baseColorModel"
+                ></base-color-picker>
+            </div>
+        </div>
+        
         <!-- Number -->
         <div class="border-b border-gray-200 pt-2 px-4">
             <h2 class="text-2xl font-bold py-2">Number</h2>
@@ -188,6 +198,7 @@ import { reactive } from 'vue'
 export default {
     setup() {
         const preview = reactive({
+            baseColorModel: null,
             baseCheckboxModel: false,
             baseEmailModel: null,
             baseNumberModel: null,
