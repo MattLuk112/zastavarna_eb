@@ -1,5 +1,15 @@
 <template>
     <div>
+        <!-- DateTime -->
+        <div class="border-b border-gray-200 pt-2 px-4">
+            <h2 class="text-2xl font-bold py-2">DateTime</h2>
+            <div class="pb-4">
+                <base-date-time
+                    v-model="preview.baseDateTimeModel"
+                ></base-date-time>
+            </div>
+        </div>
+
         <!-- Date -->
         <div class="border-b border-gray-200 pt-2 px-4">
             <h2 class="text-2xl font-bold py-2">Date</h2>
@@ -211,6 +221,7 @@ export default {
             baseColorModel: null,
             baseCheckboxModel: false,
             baseDateModel: null,
+            baseDateTimeModel: null,
             baseEmailModel: null,
             baseNumberModel: null,
             baseOnOffModel: false,

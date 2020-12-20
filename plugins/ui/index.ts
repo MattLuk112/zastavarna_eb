@@ -2,6 +2,7 @@
 import BaseCheckbox from '/~plugins/ui/components/BaseCheckbox.vue';
 import BaseColorPicker from '/~plugins/ui/components/BaseColorPicker.vue';
 import BaseDate from '/~plugins/ui/components/BaseDate.vue';
+import BaseDateTime from '/~plugins/ui/components/BaseDateTime.vue';
 import BaseEmail from '/~plugins/ui/components/BaseEmail.vue';
 import BaseNumber from '/~plugins/ui/components/BaseNumber.vue';
 import BaseOnOff from '/~plugins/ui/components/BaseOnOff.vue';
@@ -24,6 +25,7 @@ export const components = [
     BaseCheckbox,
     BaseColorPicker,
     BaseDate,
+    BaseDateTime,
     BaseEmail,
     BaseNumber,
     BaseOnOff,
