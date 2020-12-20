@@ -1,5 +1,15 @@
 <template>
     <div>
+        <!-- Date -->
+        <div class="border-b border-gray-200 pt-2 px-4">
+            <h2 class="text-2xl font-bold py-2">Date</h2>
+            <div class="pb-4">
+                <base-date
+                    v-model="preview.baseDateModel"
+                ></base-date>
+            </div>
+        </div>
+
         <!-- Color picker -->
         <div class="border-b border-gray-200 pt-2 px-4">
             <h2 class="text-2xl font-bold py-2">Color picker</h2>
@@ -200,6 +210,7 @@ export default {
         const preview = reactive({
             baseColorModel: null,
             baseCheckboxModel: false,
+            baseDateModel: null,
             baseEmailModel: null,
             baseNumberModel: null,
             baseOnOffModel: false,

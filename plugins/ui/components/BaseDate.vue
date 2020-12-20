@@ -1,7 +1,7 @@
 <template>
     <div>
         <input
-            type="text"
+            type="date"
             class="
                 flex-auto 
                 items-center 
@@ -28,7 +28,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: 'BaseText',
+    name: 'BaseDate',
     
     emits: ['update:modelValue'],
 
