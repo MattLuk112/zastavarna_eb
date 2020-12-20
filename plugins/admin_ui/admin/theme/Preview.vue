@@ -1,5 +1,16 @@
 <template>
     <div>
+        <!-- Textarea -->
+        <div class="border-b border-gray-200 pt-2 px-4">
+            <h2 class="text-2xl font-bold py-2">Textarea</h2>
+            <div class="pb-4">
+                <base-textarea
+                    v-model="preview.baseTextareaModel"
+                    placeholder="Your message here"
+                ></base-textarea>
+            </div>
+        </div>
+
         <!-- Email -->
         <div class="border-b border-gray-200 pt-2 px-4">
             <h2 class="text-2xl font-bold py-2">E-mail</h2>
@@ -174,6 +185,7 @@ export default {
             baseSearchModel: null,
             baseSelectModel: null,
             baseTextModel: null,
+            baseTextareaModel: null
         })
 
         const sampleLabelFunction = function() {
