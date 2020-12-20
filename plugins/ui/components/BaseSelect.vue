@@ -18,19 +18,19 @@
     <!-- Value -->
     <div 
       class="
-      flex
-      items-center
-      absolute
-      left-0
-      right-8
-      top-0
-      bottom-0
-      px-4
-      pr-0 
-      py-2
-      bg-white
-      pointer-events-none
-      group-focus:hidden
+        flex
+        items-center
+        absolute
+        left-0
+        right-8
+        top-0
+        bottom-0
+        px-4
+        pr-0 
+        py-2
+        bg-white
+        pointer-events-none
+        group-focus:hidden
       "
       :class="[
         state.show ? 'hidden' : 'block'
@@ -117,11 +117,11 @@
           v-if="option.value"
           @click="select(option.value)"
           class="
-          px-4 
-          py-2 
-          cursor-pointer 
-          hover:bg-gray-100
-          select-none
+            px-4 
+            py-2 
+            cursor-pointer 
+            hover:bg-gray-100
+            select-none
           "
           :class="[
             option.value === modelValue ? 'font-bold' : 'font-regular'
@@ -134,10 +134,11 @@
         >
           <div 
             class="
-            font-bold
-            px-4 
-            py-2 
-            bg-gray-200"
+              font-bold
+              px-4 
+              py-2 
+              bg-gray-200
+          "
           >
             {{ option.label }}
           </div>
@@ -146,11 +147,11 @@
             :key="`${optionchild}-${optionchildindex}`"
             @click="select(optionchild.value)"
             class="
-            px-8 
-            py-2 
-            cursor-pointer 
-            hover:bg-gray-100
-            select-none
+              px-8 
+              py-2 
+              cursor-pointer 
+              hover:bg-gray-100
+              select-none
             "
             :class="[
               optionchild.value === modelValue ? 'font-bold' : 'font-regular'
@@ -168,7 +169,11 @@ import { defineComponent, computed, reactive, ref, onMounted, onBeforeUnmount, w
 
 export default defineComponent({
   name: 'BaseSelect',
+
+  emits: ['update:modelValue'],
+
   props: {
+    modelValue: String,
     placeholder: {
       type: String,
       default: null
@@ -177,13 +182,12 @@ export default defineComponent({
       type: Array,
       default: []
     },
-    modelValue: String,
     filterable: {
       type: Boolean,
       default: true
     }
   },
-  emites: ['update:modelValue'],
+  
   setup(props, { emit }) {
 
     const el = ref(null);

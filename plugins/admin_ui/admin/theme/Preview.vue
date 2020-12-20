@@ -1,5 +1,16 @@
 <template>
     <div>
+        <!-- Password -->
+        <div class="border-b border-gray-200 pt-2 px-4">
+            <h2 class="text-2xl font-bold py-2">Password</h2>
+            <div class="pb-4">
+                <base-password
+                    v-model="preview.basePasswordModel"
+                    placeholder="Password"
+                ></base-password>
+            </div>
+        </div>
+
         <!-- Select -->
         <div class="border-b border-gray-200 pt-2 px-4">
             <h2 class="text-2xl font-bold py-2">Select</h2>
@@ -103,6 +114,7 @@ import { reactive } from 'vue'
 export default {
     setup() {
         const preview = reactive({
+            basePasswordModel: null,
             baseSelectModel: null
         })
 
