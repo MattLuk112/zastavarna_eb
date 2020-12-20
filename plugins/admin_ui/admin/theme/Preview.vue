@@ -15,6 +15,23 @@
                         {
                             label: sampleLabelFunction,
                             value: sampleValueFunction
+                        },
+                        {
+                            label: 'Trucks',
+                            children: [
+                                {
+                                    label: 'MAN',
+                                    value: 'man'
+                                },
+                                {
+                                    label: 'Caterpillar',
+                                    value: 'caterpillar'
+                                },
+                                {
+                                    label: 'Midwest Automotive',
+                                    value: sampleChildValueFunction
+                                }
+                            ]
                         }
                     ]"
                 ></base-select>
@@ -99,10 +116,16 @@ export default {
             return `mercedes-${variable}`
         }
 
+        const sampleChildValueFunction = function() {
+            const variable = 'automotive';
+            return `midwest-${variable}`
+        }
+
         return {
             preview,
             sampleLabelFunction,
-            sampleValueFunction
+            sampleValueFunction,
+            sampleChildValueFunction
         }
     }
 }

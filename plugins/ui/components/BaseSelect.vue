@@ -109,23 +109,57 @@
         state.show ? 'block' : 'hidden'
       ]"
     >
-      <div 
-        v-for="option in options"
-        :key="option.value"
-        @click="select(option.value)"
-        class="
-        px-4 
-        py-2 
-        cursor-pointer 
-        hover:bg-gray-100
-        select-none
-        "
-        :class="[
-          option.value === modelValue ? 'font-bold' : 'font-regular'
-        ]"
+      <template
+        v-for="(option, optionindex) in options"
+        :key="optionindex"
       >
-        {{ option.label }}
-      </div>
+        <div 
+          v-if="option.value"
+          @click="select(option.value)"
+          class="
+          px-4 
+          py-2 
+          cursor-pointer 
+          hover:bg-gray-100
+          select-none
+          "
+          :class="[
+            option.value === modelValue ? 'font-bold' : 'font-regular'
+          ]"
+        >
+          {{ option.label }}
+        </div>
+        <div
+          v-if="option.children"
+        >
+          <div 
+            class="
+            font-bold
+            px-4 
+            py-2 
+            bg-gray-200"
+          >
+            {{ option.label }}
+          </div>
+          <div 
+            v-for="(optionchild, optionchildindex) in option.children"
+            :key="`${optionchild}-${optionchildindex}`"
+            @click="select(optionchild.value)"
+            class="
+            px-8 
+            py-2 
+            cursor-pointer 
+            hover:bg-gray-100
+            select-none
+            "
+            :class="[
+              optionchild.value === modelValue ? 'font-bold' : 'font-regular'
+            ]"
+          >
+            {{ optionchild.label }}
+          </div>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -193,23 +227,48 @@ export default defineComponent({
       return typeof input === 'string' ? input.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : null;
     }
 
+    const prepareOption = (option => {
+      
+      if (typeof option.value === 'function') {
+        option.value = option.value();
+      }
+      
+      if (typeof option.label === 'function') {
+        option.label = option.label();
+      }
+
+      if (option.children) {
+        option.children = option.children.map(prepareOption);
+      }
+
+      return option;
+    });
+
     const options = computed(() => {
-      return props.options.map(option => {
-        if (typeof option.value === 'function') {
-          option.value = option.value();
-        }
-        if (typeof option.label === 'function') {
-          option.label = option.label();
-        }
-        return option;
-      }).filter(option => {
+      return props.options.map(prepareOption).filter(option => {
         return state.search ? normalize(option.label).includes(normalize(state.search)) : true;
       });
     });
 
+    const selected = computed(() => {
+      let result = null;
+      options.value.forEach(option => {
+        if (option.value === props.modelValue) {
+          result = option;
+        }
+        if (option.children) {
+          option.children.forEach(childoption => {
+            if (childoption.value === props.modelValue) {
+              result = childoption;
+            }
+          })
+        }
+      });
+      return result;
+    });
+
     const modelLabel = computed(() => {
-      const selected = options.value.find((option) => option.value === props.modelValue);
-      return selected ? selected.label : null;
+      return selected.value ? selected.value.label : null;
     });
 
     const shownValue = computed(() => {
