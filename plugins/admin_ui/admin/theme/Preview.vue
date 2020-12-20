@@ -1,5 +1,15 @@
 <template>
     <div>
+        <!-- Checkbox -->
+        <div class="border-b border-gray-200 pt-2 px-4">
+            <h2 class="text-2xl font-bold py-2">Checkbox</h2>
+            <div class="pb-4">
+                <base-checkbox
+                    v-model="preview.baseCheckbox"
+                ></base-checkbox>
+            </div>
+        </div>
+
         <!-- On/Off -->
         <div class="border-b border-gray-200 pt-2 px-4">
             <h2 class="text-2xl font-bold py-2">On/Off</h2>
@@ -124,6 +134,7 @@ import { reactive } from 'vue'
 export default {
     setup() {
         const preview = reactive({
+            baseCheckbox: false,
             baseOnOff: false,
             basePasswordModel: null,
             baseSelectModel: null
