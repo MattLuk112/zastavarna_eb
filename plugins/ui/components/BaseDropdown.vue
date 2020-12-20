@@ -62,18 +62,18 @@ export default defineComponent({
       state.show = !state.show;
     }
 
-    const close = (e) => {
+    const closeClick = (e) => {
       if (!el.value.contains(e.target)) {
         state.show = false;
       }
     }
 
     onMounted(() => {
-      document.addEventListener('click', close)
+      document.addEventListener('click', closeClick)
     });
 
     onBeforeUnmount(() => {
-      document.removeEventListener('click', close)
+      document.removeEventListener('click', closeClick)
     });
 
     return {

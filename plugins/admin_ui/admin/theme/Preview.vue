@@ -4,7 +4,6 @@
         <div class="border-b border-gray-200 pt-2 px-4">
             <h2 class="text-2xl font-bold py-2">Select</h2>
             <div class="pb-4">
-                Hodnota: {{ preview.baseSelectModel }}
                 <base-select
                     placeholder="Značka"
                     v-model="preview.baseSelectModel"
@@ -14,14 +13,8 @@
                             value: 'ford'
                         },
                         {
-                            label() {
-                                const variable = 'Test';
-                                return `Škoda ${variable}`
-                            },
-                            value() {
-                                const variable = 5;
-                                return `skoda-${variable}`
-                            }
+                            label: sampleLabelFunction,
+                            value: sampleValueFunction
                         }
                     ]"
                 ></base-select>
@@ -96,8 +89,20 @@ export default {
             baseSelectModel: null
         })
 
+        const sampleLabelFunction = function() {
+            const variable = 'Benz';
+            return `Mercedes-${variable}`
+        }
+
+        const sampleValueFunction = function() {
+            const variable = 'benz';
+            return `mercedes-${variable}`
+        }
+
         return {
-            preview
+            preview,
+            sampleLabelFunction,
+            sampleValueFunction
         }
     }
 }

@@ -1,8 +1,9 @@
 <template>
   <div
+    ref="el"
     class="
       flex
-      items-center
+      items-stretch
       relative
       group
       text-gray-700 
@@ -14,9 +15,35 @@
       hover:border-gray-500
     "
   >
+    <!-- Value -->
+    <div 
+      class="
+      flex
+      items-center
+      absolute
+      left-0
+      right-8
+      top-0
+      bottom-0
+      px-4
+      pr-0 
+      py-2
+      bg-white
+      pointer-events-none
+      group-focus:hidden
+      "
+      :class="[
+        state.show ? 'hidden' : 'block'
+      ]"
+      v-if="modelLabel"
+    >
+      {{ modelLabel }}
+    </div>
+
+    <!-- Input -->
     <input
+      v-if="filterable"
       type="text" 
-      :placeholder="placeholder"
       class="
         flex-auto 
         items-center 
@@ -29,11 +56,42 @@
         group 
         focus:outline-none 
         cursor-pointer
+        placeholder-gray-400
       "
       @focus="showOptions"
+      :placeholder="placeholder"
+      v-model="state.search"
       />
-    <div class="w-8 px-2 flex-grow-0">
-      <icon-chevron-down></icon-chevron-down>
+    <div
+      @click="showOptions"
+      class="
+        flex-auto 
+        items-center 
+        px-4 
+        py-2 
+        text-sm 
+        font-medium 
+        leading-5 
+        rounded-md 
+        group 
+        focus:outline-none 
+        cursor-pointer
+        text-gray-400
+      "
+      v-else>
+      {{ shownValue }}
+    </div>
+    <div class="
+      flex-auto
+      flex
+      items-center
+      w-8 
+      px-2 
+      flex-grow-0 
+      cursor-pointer 
+      select-none
+    " @click="toggleOptions">
+      <icon-chevron-down class="w-4 h-4"></icon-chevron-down>
     </div>
     <div
       class="
@@ -54,16 +112,25 @@
       <div 
         v-for="option in options"
         :key="option.value"
-        class="px-2 py-2 cursor-pointer hover:bg-gray-100"
         @click="select(option.value)"
+        class="
+        px-4 
+        py-2 
+        cursor-pointer 
+        hover:bg-gray-100
+        select-none
+        "
+        :class="[
+          option.value === modelValue ? 'font-bold' : 'font-regular'
+        ]"
       >
-        {{ option.value }} : {{ option.label }}
+        {{ option.label }}
       </div>
     </div>
   </div>
 </template>
 <script>
-import { defineComponent, computed, reactive } from "vue"
+import { defineComponent, computed, reactive, ref, onMounted, onBeforeUnmount, watch } from "vue"
 
 export default defineComponent({
   name: 'BaseSelect',
@@ -76,15 +143,20 @@ export default defineComponent({
       type: Array,
       default: []
     },
-    'modelValue': {
-      type: String,
-      default: null
-    },
+    modelValue: String,
+    filterable: {
+      type: Boolean,
+      default: true
+    }
   },
+  emites: ['update:modelValue'],
   setup(props, { emit }) {
 
+    const el = ref(null);
+
     const state = reactive({
-      show: false
+      show: false,
+      search: null
     })
 
     const showOptions = () => {
@@ -103,9 +175,22 @@ export default defineComponent({
       }
     }
 
-    const select = (value) => {
-      emit('update:modelValue', value);
-      hideOptions();
+    const closeClick = (e) => {
+      if (!el.value.contains(e.target)) {
+        state.show = false;
+      }
+    }
+
+    onMounted(() => {
+      document.addEventListener('click', closeClick)
+    });
+
+    onBeforeUnmount(() => {
+      document.removeEventListener('click', closeClick)
+    });
+
+    const normalize = (input) => {
+      return typeof input === 'string' ? input.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : null;
     }
 
     const options = computed(() => {
@@ -117,18 +202,37 @@ export default defineComponent({
           option.label = option.label();
         }
         return option;
+      }).filter(option => {
+        return state.search ? normalize(option.label).includes(normalize(state.search)) : true;
       });
     });
 
+    const modelLabel = computed(() => {
+      const selected = options.value.find((option) => option.value === props.modelValue);
+      return selected ? selected.label : null;
+    });
+
+    const shownValue = computed(() => {
+      return props.modelValue ?? props.placeholder;
+    });
+
+    const select = (value) => {
+      state.search = modelLabel;
+      emit('update:modelValue', value);
+      hideOptions();
+    }
+
     return {
       options,
-      placeholder: props.placeholder,
       select,
       state,
       showOptions,
       hideOptions,
       toggleOptions,
-      modelValue: props.modelValue
+      modelLabel,
+      shownValue,
+      ref,
+      el
     }
   }
 });
