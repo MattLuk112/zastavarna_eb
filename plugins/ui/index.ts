@@ -1,5 +1,6 @@
 // Form
 import BaseCheckbox from '/~plugins/ui/components/BaseCheckbox.vue';
+import BaseEmail from '/~plugins/ui/components/BaseEmail.vue';
 import BaseOnOff from '/~plugins/ui/components/BaseOnOff.vue';
 import BasePassword from '/~plugins/ui/components/BasePassword.vue';
 import BaseSelect from '/~plugins/ui/components/BaseSelect.vue';
@@ -17,6 +18,7 @@ import IconSortDescending from '/~plugins/ui/components/icons/SortDescending.vue
 export const components = [
     // Form
     BaseCheckbox,
+    BaseEmail,
     BaseOnOff,
     BasePassword,
     BaseSelect,
