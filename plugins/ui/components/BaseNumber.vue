@@ -1,6 +1,7 @@
 <template>
     <div>
-        <textarea
+        <input
+            type="number"
             class="
                 flex-auto 
                 items-center 
@@ -19,8 +20,10 @@
             "
             @input="onInput"
             :placeholder="placeholder"
-            :rows="rows"
-        ></textarea>
+            :min="min"
+            :max="max"
+            :step="step"
+        >
     </div>
 </template>
 
@@ -28,7 +31,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: 'BaseTextarea',
+    name: 'BaseNumber',
     
     emits: ['update:modelValue'],
 
@@ -38,9 +41,17 @@ export default defineComponent({
             type: String,
             default: null
         },
-        rows: {
+        min: {
             type: Number,
-            default: 4
+            default: null
+        },
+        max: {
+            type: Number,
+            default: null
+        },
+        step: {
+            type: Number,
+            default: null
         }
     },
 

@@ -1,6 +1,7 @@
 // Form
 import BaseCheckbox from '/~plugins/ui/components/BaseCheckbox.vue';
 import BaseEmail from '/~plugins/ui/components/BaseEmail.vue';
+import BaseNumber from '/~plugins/ui/components/BaseNumber.vue';
 import BaseOnOff from '/~plugins/ui/components/BaseOnOff.vue';
 import BasePassword from '/~plugins/ui/components/BasePassword.vue';
 import BaseSelect from '/~plugins/ui/components/BaseSelect.vue';
@@ -20,6 +21,7 @@ export const components = [
     // Form
     BaseCheckbox,
     BaseEmail,
+    BaseNumber,
     BaseOnOff,
     BasePassword,
     BaseSelect,
