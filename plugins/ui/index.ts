@@ -10,6 +10,7 @@ import BasePassword from '/~plugins/ui/components/BasePassword.vue';
 import BaseSelect from '/~plugins/ui/components/BaseSelect.vue';
 import BaseText from '/~plugins/ui/components/BaseText.vue';
 import BaseTextarea from '/~plugins/ui/components/BaseTextarea.vue';
+import BaseTime from '/~plugins/ui/components/BaseTime.vue';
 
 // UI
 import BaseDropdown from '/~plugins/ui/components/BaseDropdown.vue';
@@ -33,6 +34,7 @@ export const components = [
     BaseSelect,
     BaseText,
     BaseTextarea,
+    BaseTime,
     
     // UI
     BaseDropdown,
