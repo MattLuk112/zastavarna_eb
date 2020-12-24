@@ -1,7 +1,12 @@
 <template>
-    <div ref="editor">
-        TESTS
-        WYSIWYGTRRR
+    <div 
+        ref="editor"
+        :style="{
+            minHeight: '100px',
+            maxHeight: '200px',
+            overflowY: 'auto'
+        }"
+    >
     </div>
 </template>
 
