@@ -12,6 +12,7 @@ import BaseSlider from '/~plugins/ui/components/BaseSlider.vue';
 import BaseText from '/~plugins/ui/components/BaseText.vue';
 import BaseTextarea from '/~plugins/ui/components/BaseTextarea.vue';
 import BaseTime from '/~plugins/ui/components/BaseTime.vue';
+import BaseWysiwyg from '/~plugins/ui/components/BaseWysiwyg.vue';
 
 // UI
 import BaseDropdown from '/~plugins/ui/components/BaseDropdown.vue';
@@ -37,6 +38,7 @@ export const components = [
     BaseText,
     BaseTextarea,
     BaseTime,
+    BaseWysiwyg,
     
     // UI
     BaseDropdown,
