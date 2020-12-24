@@ -42,6 +42,9 @@ export default async (appName, stores, environment, pluginsPath) => {
   }
 
   function resolveStorePath(store, pluginName) {
+    if (process.platform === "win32") {
+      return `/~plugins/${pluginName}/${appName}/${store}`; 
+    }
     const path = require('path');
     return path.resolve(`/~plugins/${pluginName}/${appName}/`, store);
   }

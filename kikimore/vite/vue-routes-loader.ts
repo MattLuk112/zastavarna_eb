@@ -169,6 +169,9 @@ export default async (appName, plugins, environment, pluginsPath) => {
   }
 
   function resolveComponentPath(component, plugin) {
+    if (process.platform === "win32") {
+      return `/~plugins/${plugin}/${appName}/${component}`;
+    }
     const path = require('path');
     return path.resolve(`/~plugins/${plugin}/${appName}/`, component);
   }
