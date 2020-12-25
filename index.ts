@@ -1,9 +1,10 @@
 import Kikimore from './kikimore/kikimore';
+import config from './config';
 
 const kikimore = new Kikimore({
   databaseName: 'kikimore',
-  databaseUrl: process.env.mongoUrl,
-  port: process.env.port,
+  databaseUrl:  config.mongoUrl,
+  port: config.port,
   api: {
     path: '/api',
   },
