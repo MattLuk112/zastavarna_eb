@@ -11,6 +11,19 @@
       >
         <h5 class="px-3 mb-3 lg:mb-3 uppercase tracking-wide font-semibold text-sm lg:text-xs text-gray-900">Komponenty</h5>
         <router-link
+          :to="{ name: 'Pages' }"
+          v-slot="{ href, navigate, isActive }"
+        >
+          <div
+            class="px-3 py-2 transition-colors duration-200 block mb-2 hover:text-gray-900"
+            :class="isActive ? 'text-gray-900' : 'text-gray-500'"
+            :href="href"
+            @click="navigate"
+          >
+            Stránky
+          </div>
+        </router-link>
+        <router-link
           :to="{ name: 'Contracts' }"
           v-slot="{ href, navigate, isActive }"
         >

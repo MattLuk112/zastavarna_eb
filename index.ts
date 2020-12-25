@@ -12,7 +12,7 @@ const kikimore = new Kikimore({
     path: '/admin',
   },
   frontend: {},
-  plugins: ['user', 'client', 'contract', 'admin_ui', 'rate'],
+  plugins: ['user', 'client', 'contract', 'admin_ui', 'rate', 'page'],
 });
 
 kikimore.start();
